@@ -1,1 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('/background.jpg');
+  background-size: cover;
+  font-family: 'Arial', sans-serif;
+}
 
+.chatBox {
+  width: 400px;
+  height: 500px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 20px;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.userMsg {
+  text-align: right;
+  margin-bottom: 10px;
+  color: #ff4081;
+}
+
+.botMsg {
+  text-align: left;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.inputBox {
+  display: flex;
+  margin-top: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  background: #ff4081;
+  color: white;
+  cursor: pointer;
+  margin-left: 5px;
+}
