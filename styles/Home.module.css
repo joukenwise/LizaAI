@@ -1,54 +1,87 @@
+/* styles/Home.module.css */
+
+/* Container utama */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-image: url('/background.jpg');
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-image: url('/images/background.jpg');
   background-size: cover;
+  background-position: center;
+  padding: 20px;
   font-family: 'Arial', sans-serif;
 }
 
+/* Judul halaman */
+.title {
+  font-size: 2.5rem;
+  color: #ff69b4;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px #000;
+}
+
+/* Chat box container */
 .chatBox {
-  width: 400px;
-  height: 500px;
-  background: rgba(255,255,255,0.85);
-  border-radius: 20px;
-  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   overflow-y: auto;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  max-height: 70vh;
 }
 
-.userMsg {
-  text-align: right;
-  margin-bottom: 10px;
-  color: #ff4081;
-}
-
-.botMsg {
-  text-align: left;
-  margin-bottom: 10px;
+/* Pesan individual */
+.message {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ffe4e1;
   color: #333;
 }
 
-.inputBox {
+/* Input container */
+.inputContainer {
   display: flex;
+  width: 100%;
   margin-top: 10px;
 }
 
-input {
+/* Input field */
+.inputField {
   flex: 1;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid #ccc;
+  font-size: 1rem;
 }
 
-button {
-  padding: 10px 15px;
-  border-radius: 10px;
+/* Tombol kirim */
+.sendButton {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 8px;
+  background-color: #ff69b4;
+  color: #fff;
   border: none;
-  background: #ff4081;
-  color: white;
   cursor: pointer;
-  margin-left: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.sendButton:hover {
+  background-color: #ff1493;
+}
+
+/* Avatar pengguna */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
