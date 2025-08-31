@@ -1,40 +1,58 @@
-/* styles/Home.module.css */
-
-/* Container utama */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  background-image: url('/images/background.jpg');
+  padding: 2rem;
+  background: url('/images/background.jpg') no-repeat center center;
   background-size: cover;
-  background-position: center;
-  padding: 20px;
-  font-family: 'Arial', sans-serif;
+  min-height: 100vh;
 }
 
-/* Judul halaman */
 .title {
   font-size: 2.5rem;
   color: #ff69b4;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
   text-shadow: 2px 2px 4px #000;
 }
 
-/* Chat box container */
 .chatBox {
   width: 100%;
   max-width: 600px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 15px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  height: 400px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 1rem;
   overflow-y: auto;
-  max-height: 70vh;
+  margin-bottom: 1rem;
+}
+
+.message {
+  margin-bottom: 0.8rem;
+  word-wrap: break-word;
+}
+
+.inputContainer {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+}
+
+.inputField {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: 8px 0 0 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.sendButton {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  background-color: #ff69b4;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 8px 8px 0;
+}  max-height: 70vh;
 }
 
 /* Pesan individual */
