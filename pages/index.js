@@ -20,14 +20,11 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input }),
       });
-
       const data = await res.json();
       setMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
     } catch (err) {
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: "Terjadi error saat memanggil AI." },
-      ]);
+      console.error("Fetch error:", err);
+      setMessages((prev) => [...prev, { role: "assistant", content: "Terjadi error saat memanggil AI." }]);
     } finally {
       setLoading(false);
     }
@@ -62,33 +59,4 @@ export default function Home() {
       </div>
     </div>
   );
-}  return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>ChatGPT Anime</h1>
-
-      <div className={styles.chatBox}>
-        {messages.map((msg, idx) => (
-          <div key={idx} className={styles.message}>
-            <strong>{msg.role === "user" ? "You: " : "AI: "}</strong>
-            {msg.content}
-          </div>
-        ))}
-        {loading && <div className={styles.message}>AI sedang mengetik...</div>}
-      </div>
-
-      <div className={styles.inputContainer}>
-        <input
-          type="text"
-          placeholder="Ketik pesan..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className={styles.inputField}
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-        />
-        <button className={styles.sendButton} onClick={sendMessage}>
-          Kirim
-        </button>
-      </div>
-    </div>
-  );
-          }
+}
