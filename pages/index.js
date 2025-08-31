@@ -4,27 +4,40 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
 
     const userMessage = { role: "user", content: input };
-    setMessages([...messages, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInput("");
+    setLoading(true);
 
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: input }),
-    });
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input }),
+      });
 
-    const data = await res.json();
-    setMessages([...messages, userMessage, { role: "assistant", content: data.reply }]);
+      const data = await res.json();
+      const aiMessage = { role: "assistant", content: data.reply };
+      setMessages((prev) => [...prev, aiMessage]);
+    } catch (err) {
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "Terjadi error saat memanggil AI." },
+      ]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>ChatGPT Anime</h1>
+
       <div className={styles.chatBox}>
         {messages.map((msg, idx) => (
           <div key={idx} className={styles.message}>
@@ -32,7 +45,9 @@ export default function Home() {
             {msg.content}
           </div>
         ))}
+        {loading && <div className={styles.message}>AI sedang mengetik...</div>}
       </div>
+
       <div className={styles.inputContainer}>
         <input
           type="text"
@@ -42,8 +57,10 @@ export default function Home() {
           className={styles.inputField}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
-        <button className={styles.sendButton} onClick={sendMessage}>Kirim</button>
+        <button className={styles.sendButton} onClick={sendMessage}>
+          Kirim
+        </button>
       </div>
     </div>
   );
-                                    }
+          }
