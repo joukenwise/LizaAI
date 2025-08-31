@@ -15,9 +15,12 @@ export default async function handler(req, res) {
       messages: [{ role: "user", content: message }],
     });
 
-    const reply = response.choices[0].message.content;
+    // Gunakan optional chaining untuk menghindari undefined
+    const reply = response?.choices?.[0]?.message?.content || "AI tidak memberikan jawaban.";
+    console.log("AI reply:", reply); // debug log
     res.status(200).json({ reply });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ reply: "Terjadi error, coba lagi." });
   }
 }
