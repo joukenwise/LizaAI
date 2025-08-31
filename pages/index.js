@@ -22,8 +22,7 @@ export default function Home() {
       });
 
       const data = await res.json();
-      const aiMessage = { role: "assistant", content: data.reply };
-      setMessages((prev) => [...prev, aiMessage]);
+      setMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
     } catch (err) {
       setMessages((prev) => [
         ...prev,
@@ -35,6 +34,35 @@ export default function Home() {
   };
 
   return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>ChatGPT Anime</h1>
+
+      <div className={styles.chatBox}>
+        {messages.map((msg, idx) => (
+          <div key={idx} className={styles.message}>
+            <strong>{msg.role === "user" ? "You: " : "AI: "}</strong>
+            {msg.content}
+          </div>
+        ))}
+        {loading && <div className={styles.message}>AI sedang mengetik...</div>}
+      </div>
+
+      <div className={styles.inputContainer}>
+        <input
+          type="text"
+          placeholder="Ketik pesan..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className={styles.inputField}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+        />
+        <button className={styles.sendButton} onClick={sendMessage}>
+          Kirim
+        </button>
+      </div>
+    </div>
+  );
+}  return (
     <div className={styles.container}>
       <h1 className={styles.title}>ChatGPT Anime</h1>
 
