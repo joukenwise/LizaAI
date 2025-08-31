@@ -21,10 +21,16 @@ export default function Home() {
         body: JSON.stringify({ message: input }),
       });
       const data = await res.json();
-      setMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: data.reply || "AI tidak membalas." },
+      ]);
     } catch (err) {
       console.error("Fetch error:", err);
-      setMessages((prev) => [...prev, { role: "assistant", content: "Terjadi error saat memanggil AI." }]);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "Terjadi error saat memanggil AI." },
+      ]);
     } finally {
       setLoading(false);
     }
@@ -59,4 +65,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
+    }
